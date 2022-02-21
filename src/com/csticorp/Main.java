@@ -19,13 +19,18 @@ public class Main {
             FileWriter fw = new FileWriter(outputFile);
             //Se iteran todas las lineas del archivo de entrada
             for(String line; (line = br.readLine()) != null; ) {
+
+
+
                 //Se convierten las cantidades de String a Int
                 int[] numbers = Arrays.stream(line.split(";")).mapToInt(Integer::parseInt).toArray();
-                //Se suman las cantidades de cada caja
-                int sum = IntStream.of(numbers).sum();
+                //Llamar a la función de cálculo
+                int suma=calcularLote(numbers);
+
+
 
                 //Se escribe la respuesta en el archivo de salida con un salto de linea para separar la respuesta de cada linea.
-                fw.write(sum+"\n");
+                fw.write(suma+"\n");
             }
             //Cerramos el archivo
             fw.close();
@@ -34,5 +39,10 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public static int calcularLote(int[] arrCajas){
+        //Se suman las cantidades de cada caja
+        return IntStream.of(arrCajas).sum();
+
     }
 }
